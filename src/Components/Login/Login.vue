@@ -34,8 +34,9 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useUserStore } from '@/Store/UserStore';
 const router = useRouter();
-
+const userStore = useUserStore();
 
 
 
@@ -60,6 +61,7 @@ const handleLogin = () => {
     password.value === 'password123'
   ) {
     success.value = 'Login successful!';
+    userStore.login(email.value, true);
     router.push('/home');
   } else {
     error.value = 'Invalid email or password';
